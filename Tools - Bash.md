@@ -29,7 +29,7 @@ The `coreutils` are a collection of standard Unix tools available on most Linux 
 - `mv`: move (rename) files
 - `ls`: list directory contents
 - `cat`: concatenate and write files
-- `echo`: print output of aonther command to stdout
+- `echo`: print output of another command to stdout
 - `chmod`: change access permissions
 - `chown`: change file ownership and group
 - `df`: shows disk free space on file systems
