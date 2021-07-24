@@ -122,10 +122,10 @@
 
 ## Questions
 - What is Java? What are the benefits of Java?
-- What is the difference betwwen the JRE, JDK, and JVM?
+- What is the difference between the JRE, JDK, and JVM?
 - What happens during the compilation process?
 - What is a constructor?
-- What are the primitive datatypes?
+- What are the primitive data types?
 - What is a no args constructor?
 - What is the default constructor?
 - What are the scopes of a variable in java?
@@ -152,10 +152,10 @@
 - What is a wrapper class?
 - What is garbage collection?
 - What are the pillars of object oriented programming?
-- What is the different between an abstract class and an interface?
-- What are the differences between FileinputeStream, FileReader, and bufferedReader (and their output counterparts)?
+- What is the difference between an abstract class and an interface?
+- What are the differences between FileinputStream, FileReader, and bufferedReader (and their output counterparts)?
 - What are generics? Why use them?
-- What is the diffence between Comparator and Comparable?
+- What is the difference between Comparator and Comparable?
 - What is the purpose of the Object class?
 - What is the difference between  == and .equals?
 - What is the purpose of hashcode?
@@ -164,7 +164,7 @@
 - What are the different assert methods of JUnit?
 - How do I create a test case and test suite in JUnit?
 - What is Maven?
-- what is the maven lifecycle?
+- What is the maven lifecycle?
 - What is the purpose of the pom.xml?
 - What are the purposes of a maven repository among projects?
 
