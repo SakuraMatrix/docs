@@ -153,7 +153,7 @@
 - What is garbage collection?
 - What are the pillars of object oriented programming?
 - What is the difference between an abstract class and an interface?
-- What are the differences between FileInputStream, FileReader, and bufferedReader (and their output counterparts)?
+- What are the differences between FileInputStream, FileReader, and BufferedReader (and their output counterparts)?
 - What are generics? Why use them?
 - What is the difference between Comparator and Comparable?
 - What is the purpose of the Object class?
