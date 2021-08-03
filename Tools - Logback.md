@@ -50,7 +50,7 @@ After creating the configuration file, you now have the ability to configure Log
 </appender>
 ```
 
-## Step 4: Creating Loggers:
+## Step 4: Creating Loggers
 
 Creating the appenders for I/O is the first step of using Logback; you must now name the loggers.
 
@@ -63,10 +63,10 @@ The naming scheme of your loggers has an effect on how they behave. For example,
 </logger>
 ```
 
-Now `logger` has a child that has the name `logger.driver`. `logger.driver` ***inherits*** all tags and settings that `logger` has when it was declared, in addition to any that `logger.driver` may decare itself, including to the same output. There are ways to avoid this additive effect, the details of which are provided in the documentation.
+Now `logger` has a child that has the name `logger.driver`. `logger.driver` ***inherits*** all tags and settings that `logger` has when it was declared, in addition to any that `logger.driver` may declare itself, including to the same output. There are ways to avoid this additive effect, the details of which are provided in the documentation.
 
 ## Step 5: Finish the configuration file:
-At the bottom of your document, you must include the root level that your loggers will all inherit behavior from.
+Your loggers will all inherit behavior from the root level so you must include the root level at the bottom of your document. 
 
 ### Example
  ```
