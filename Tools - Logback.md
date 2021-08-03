@@ -20,7 +20,7 @@ So the documentation requires you to create a file titled one of the following:
 - logback.xml
 Or if you don't have such file, a service-provider loading facility is used. If you don't have that, then it auto-configures itself so you can at least use it.
 
-**Note**
+**Note**:
 ***THIS FILE MUST BE IN EITHER main/java/resources or directly in the classpath (no subfolders) of your program for it to be read***
 
 ## Step 3: Configure the config file
