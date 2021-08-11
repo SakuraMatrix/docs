@@ -659,22 +659,363 @@ Java 5 added a new package to the java platform ⇾ java.util.concurrent package
 
 # Day 3:
 ## Thread basics
-	
+
+https://beginnersbook.com/2013/03/java-threads/ 
+
+	What are Java Threads?
+A thread is a:
+Facility to allow multiple activities within a single process
+Referred as lightweight process
+A thread is a series of executed statements
+Each thread has its own program counter, stack and local variables
+A thread is a nested sequence of method calls
+Its shares memory, files and per-process state
+ 
+Read: Multithreading in Java
+What's the need of a thread or why we use Threads?
+To perform asynchronous or background processing
+Increases the responsiveness of GUI applications
+Take advantage of multiprocessor systems
+Simplify program logic when there are multiple independent entities
+What happens when a thread is invoked?
+When a thread is invoked, there will be two paths of execution. One path will execute the thread and the other path will follow the statement after the thread invocation. There will be a separate stack and memory space for each thread.
+Risk Factor
+Proper co-ordination is required between threads accessing common variables [use of synchronized and volatile] for consistence view of data
+overuse of java threads can be hazardous to program’s performance and its maintainability.
+ 
+Threads in Java
+Java threads facility and API is deceptively simple:
+Every java program creates at least one thread [ main() thread ]. Additional threads are created through the Thread constructor or by instantiating classes that extend the Thread class.
+Thread creation in Java
+Thread implementation in java can be achieved in two ways:
+Extending the java.lang.Thread class
+Implementing the java.lang.Runnable Interface
+ 
+Note: The Thread and Runnable are available in the   java.lang.* package
+1) By extending thread class
+The class should extend Java Thread class.
+The class should override the run() method.
+The functionality that is expected by the Thread to be executed is written in the run() method.
+void start(): Creates a new thread and makes it runnable.
+void run(): The new thread begins its life inside this method.
+Example:
+public class MyThread extends Thread {
+   public void run(){  
+    System.out.println("thread is running...");  
+  } 
+   public static void main(String[] args) {
+     MyThread obj = new MyThread();
+     obj.start();
+}
+2) By Implementing Runnable interface
+The class should implement the Runnable interface
+The class should implement the run() method in the Runnable interface
+The functionality that is expected by the Thread to be executed is put in the run() method
+Example:
+public class MyThread implements Runnable {
+   public void run(){  
+     System.out.println("thread is running..");  
+   }  
+   public static void main(String[] args) {
+     Thread t = new Thread(new MyThread());
+     t.start();
+}
+Extends Thread class vs Implements Runnable Interface?
+Extending the Thread class will make your class unable to extend other classes, because of the single inheritance feature in  JAVA. However, this will give you a simpler code structure. If you implement Runnable, you can gain better object-oriented design and consistency and also avoid the single inheritance problems.
+If you just want to achieve basic functionality of a thread you can simply implement Runnable interface and override run() method. But if you want to do something serious with thread object as it has other methods like suspend(), resume(), ..etc which are not available in Runnable interface then you may prefer to extend the Thread class.
+Thread life cycle in java
+Read full article at: Thread life cycle in java
+Ending Thread
+A Thread ends due to the following reasons:
+The thread ends when it comes when the run() method finishes its execution.
+When the thread throws an Exception or Error that is not being caught in the program.
+Java program completes or ends.
+Another thread calls stop() methods.
+Synchronization of Threads
+In many cases concurrently running threads share data and two threads try to do operations on the same variables at the same time. This often results in corrupt data as two threads try to operate on the same data.
+A popular solution is to provide some kind of lock primitive.  Only one thread can acquire a particular lock at any particular time. This can be achieved by using a keyword “synchronized” .
+By using the synchronize only one thread can access the method at a time and a second call will be blocked until the first call returns or wait() is called inside the synchronized method.
+Deadlock
+Whenever there is multiple processes contending for exclusive access to multiple locks, there is the possibility of deadlock. A set of processes or threads is said to be deadlocked when each is waiting for an action that only one of the others can perform.
+In Order to avoid deadlock, one should ensure that when you acquire multiple locks, you always acquire the locks in the same order in all threads.
+Guidelines for synchronization
+Keep blocks short. Synchronized blocks should be short — as short as possible while still protecting the integrity of related data operations.
+Don’t block. Don’t ever call a method that might block, such as InputStream.read(), inside a synchronized block or method.
+Don’t invoke methods on other objects while holding a lock. This may sound extreme, but it eliminates the most common source of deadlock.
+ 
+
 ## Thread pool
-	
+	Thread Pools
+http://tutorials.jenkov.com/java-concurrency/thread-pools.html
+A thread pool is a pool threads that can be "reused" to execute tasks, so that each thread may execute more than one task. A thread pool is an alternative to creating a new thread for each task you need to execute.
+Creating a new thread comes with a performance overhead compared to reusing a thread that is already created. That is why reusing an existing thread to execute a task can result in a higher total throughput than creating a new thread per task.
+Additionally, using a thread pool can make it easier to control how many threads are active at a time. Each thread consumes a certain amount of computer resources, such as memory (RAM), so if you have too many threads active at the same time, the total amount of resources (e.g. RAM) that is consumed may cause the computer to slow down - e.g. if so much RAM is consumed that the operating system (OS) starts swapping RAM out to disk.
+In this thread pool tutorial I will explain how thread pools work, how they are used, and how to implement a Java thread pool. Keep in mind, that Java already contains a built-in thread pool - the Java ExecutorService - so you can use a thread pool in Java without having to implement it yourself. However, once in a while you might want to implement your own thread pool - to add functionality that is not supported by the ExecutorService. Or, you may want to implement your own Java thread pool simply as a learning experience.
+Thread Pool Tutorial Video
+If you prefer video, I have a video version of this thread pool tutorial here: Threads Pools in Java
+How a Thread Pool Works
+Instead of starting a new thread for every task to execute concurrently, the task can be passed to a thread pool. As soon as the pool has any idle threads the task is assigned to one of them and executed. Internally the tasks are inserted into a Blocking Queue which the threads in the pool are dequeuing from. When a new task is inserted into the queue one of the idle threads will dequeue it successfully and execute it. The rest of the idle threads in the pool will be blocked waiting to dequeue tasks.
+
+Thread Pool Use Cases
+Thread pools are often used in multi threaded servers. Each connection arriving at the server via the network is wrapped as a task and passed on to a thread pool. The threads in the thread pool will process the requests on the connections concurrently. A later trail will get into detail about implementing multithreaded servers in Java.
+Built-in Java Thread Pool
+Java comes with built in thread pools in the java.util.concurrent package, so you don't have to implement your own thread pool. You can read more about it in my text on the java.util.concurrent.ExecutorService. Still it can be useful to know a bit about the implementation of a thread pool anyways.
+Java Thread Pool Implementation
+Here is a simple thread pool implementation. The implementation uses the standard Java BlockingQueue that comes with Java from Java 5.
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+public class ThreadPool {
+
+    private BlockingQueue taskQueue = null;
+    private List<PoolThreadRunnable> runnables = new ArrayList<>();
+    private boolean isStopped = false;
+
+    public ThreadPool(int noOfThreads, int maxNoOfTasks){
+        taskQueue = new ArrayBlockingQueue(maxNoOfTasks);
+
+        for(int i=0; i<noOfThreads; i++){
+            PoolThreadRunnable poolThreadRunnable =
+                    new PoolThreadRunnable(taskQueue);
+
+            runnables.add(new PoolThreadRunnable(taskQueue));
+        }
+        for(PoolThreadRunnable runnable : runnables){
+            new Thread(runnable).start();
+        }
+    }
+
+    public synchronized void  execute(Runnable task) throws Exception{
+        if(this.isStopped) throw
+                new IllegalStateException("ThreadPool is stopped");
+
+        this.taskQueue.offer(task);
+    }
+
+    public synchronized void stop(){
+        this.isStopped = true;
+        for(PoolThreadRunnable runnable : runnables){
+            runnable.doStop();
+        }
+    }
+
+    public synchronized void waitUntilAllTasksFinished() {
+        while(this.taskQueue.size() > 0) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}
+
+Below here is the PoolThreadRunnable class which implements the Runnable interface, so it can be executed by a Java thread:
+import java.util.concurrent.BlockingQueue;
+
+public class PoolThreadRunnable implements Runnable {
+
+    private Thread        thread    = null;
+    private BlockingQueue taskQueue = null;
+    private boolean       isStopped = false;
+
+    public PoolThreadRunnable(BlockingQueue queue){
+        taskQueue = queue;
+    }
+
+    public void run(){
+        this.thread = Thread.currentThread();
+        while(!isStopped()){
+            try{
+                Runnable runnable = (Runnable) taskQueue.take();
+                runnable.run();
+            } catch(Exception e){
+                //log or otherwise report exception,
+                //but keep pool thread alive.
+            }
+        }
+    }
+
+    public synchronized void doStop(){
+        isStopped = true;
+        //break pool thread out of dequeue() call.
+        this.thread.interrupt();
+    }
+
+    public synchronized boolean isStopped(){
+        return isStopped;
+    }
+}
+
+And here is finally an example of how to use the ThreadPool above:
+public class ThreadPoolMain {
+
+    public static void main(String[] args) throws Exception {
+
+        ThreadPool threadPool = new ThreadPool(3, 10);
+
+        for(int i=0; i<10; i++) {
+
+            int taskNo = i;
+            threadPool.execute( () -> {
+                String message =
+                        Thread.currentThread().getName()
+                                + ": Task " + taskNo ;
+                System.out.println(message);
+            });
+        }
+
+        threadPool.waitUntilAllTasksFinished();
+        threadPool.stop();
+
+    }
+}
+
+The thread pool implementation consists of two parts. A ThreadPool class which is the public interface to the thread pool, and a PoolThread class which implements the threads that execute the tasks.
+To execute a task the method ThreadPool.execute(Runnable r) is called with a Runnable implementation as parameter. The Runnable is enqueued in the blocking queue internally, waiting to be dequeued.
+The Runnable will be dequeued by an idle PoolThread and executed. You can see this in the PoolThread.run() method. After execution the PoolThread loops and tries to dequeue a task again, until stopped.
+To stop the ThreadPool the method ThreadPool.stop() is called. The stop called is noted internally in the isStopped member. Then each thread in the pool is stopped by calling doStop() on each thread. Notice how the execute() method will throw an IllegalStateException if execute() is called after stop() has been called.
+The threads will stop after finishing any task they are currently executing. Notice the this.interrupt() call in PoolThread.doStop(). This makes sure that a thread blocked in a wait() call inside the taskQueue.dequeue() call breaks out of the wait() call, and leaves the dequeue() method call with an InterruptedException thrown. This exception is caught in the PoolThread.run() method, reported, and then the isStopped variable is checked. Since isStopped is now true, the PoolThread.run() will exit and the thread dies.
+
 ## Multithreading
+
+
+Source: https://www.baeldung.com/java-thread-lifecycle 
+
+(Using Springboot) Multi-threading is similar to multi-tasking, but it enables the processing of executing multiple threads simultaneously, rather than multiple processes. CompletableFuture, which was introduced in Java 8, provides an easy way to write asynchronous, non-blocking, and multi-threaded code.
+
+The Future interface was introduced in Java 5 to handle asynchronous computations. But, this interface did not have any methods to combine multiple asynchronous computations and handle all the possible errors. The  CompletableFuture implements Future interface, it can combine multiple asynchronous computations, handle possible errors and offers much more capabilities.
+
+See link for examples: https://dzone.com/articles/multi-threading-in-spring-boot-using-completablefu 
+
+
+
+
+
+
+
 	
 ## Concurrency
-	
+
+https://www.tutorialspoint.com/java_concurrency/concurrency_overview.htm
+
+Java is a multi-threaded programming language which means we can develop multi-threaded program using Java. A multi-threaded program contains two or more parts that can run concurrently and each part can handle a different task at the same time making optimal use of the available resources specially when your computer has multiple CPUs.
+
+By definition, multitasking is when multiple processes share common processing resources such as a CPU. Multi-threading extends the idea of multitasking into applications where you can subdivide specific operations within a single application into individual threads. Each of the threads can run in parallel. The OS divides processing time not only among different applications, but also among each thread within an application.
+
+Multi-threading enables you to write in a way where multiple activities can proceed concurrently in the same program.
+
+Life Cycle of a Thread
+A thread goes through various stages in its life cycle. For example, a thread is born, started, runs, and then dies. The following diagram shows the complete life cycle of a thread.
+
+
+
+Java Thread
+Following are the stages of the life cycle −
+
+New − A new thread begins its life cycle in the new state. It remains in this state until the program starts the thread. It is also referred to as a born thread.
+
+Runnable − After a newly born thread is started, the thread becomes runnable. A thread in this state is considered to be executing its task.
+
+Waiting − Sometimes, a thread transitions to the waiting state while the thread waits for another thread to perform a task. A thread transitions back to the runnable state only when another thread signals the waiting thread to continue executing.
+
+Timed Waiting − A runnable thread can enter the timed waiting state for a specified interval of time. A thread in this state transitions back to the runnable state when that time interval expires or when the event it is waiting for occurs.
+
+Terminated (Dead) − A runnable thread enters the terminated state when it completes its task or otherwise terminates.
+
+Thread Priorities
+Every Java thread has a priority that helps the operating system determine the order in which threads are scheduled.
+
+Java thread priorities are in the range between MIN_PRIORITY (a constant of 1) and MAX_PRIORITY (a constant of 10). By default, every thread is given priority NORM_PRIORITY (a constant of 5).
+
+Threads with higher priority are more important to a program and should be allocated processor time before lower-priority threads. However, thread priorities cannot guarantee the order in which threads execute and are very much platform dependent.
+
 ## Parallelism
+
+https://www.geeksforgeeks.org/difference-between-concurrency-and-parallelism/
+
+Parallelism is related to an application where  tasks are divided into smaller sub-tasks that are processed seemingly simultaneously or parallel. It is used to increase the throughput and computational speed of the system by using multiple processors. It enables single sequential CPUs to do a lot of things “seemingly” simultaneously.
+Parallelism leads to overlapping of central processing units and input-output tasks in one process with the central processing unit and input-output tasks of another process. Whereas in concurrency the speed is increased by overlapping the input-output activities of one process with CPU process of another process. 
+
 	
+
+
+
 ## Synchronous vs Asynchronous
+A synchronous request blocks the client until operation completes i.e. browser is blocked and unresponsive. An asynchronous request doesn’t block the client i.e. browser is responsive. At that time, users can perform other operations also. 
+
+Source: https://www.javatpoint.com/understanding-synchronous-vs-asynchronous
 	
 ## Deadlocks and Livelocks
+A deadlock occurs when two or more threads wait forever for a lock or resource held by another of the threads. Consequently, an application may stall or fail as the deadlocked threads cannot progress. Deadlock is a common concurrency problem in Java so we should avoid the need for acquiring multiple locks for a thread and design a Java application to avoid any potential deadlock conditions. However, if a thread does need multiple locks, we should make sure that each thread acquires the locks in the same order, to avoid any cyclic dependency in lock acquisition.
+We can also use timed lock attempts, like the tryLock method in the Lock interface, to make sure that a thread does not block infinitely if it is unable to acquire a lock.
+Livelock is another concurrency problem and is similar to deadlock. In livelock, two or more threads keep on transferring states between one another instead of waiting infinitely as we saw in the deadlock example. Consequently, the threads are not able to perform their respective tasks.
+A great example of livelock is a messaging system where, when an exception occurs, the message consumer rolls back the transaction and puts the message back to the head of the queue. Then the same message is repeatedly read from the queue, only to cause another exception and be put back on the queue. The consumer will never pick up any other message from the queue.
+To avoid a livelock, we need to look into the condition that is causing the livelock and then come up with a solution accordingly.
+For example, if we have two threads that are repeatedly acquiring and releasing locks, resulting in livelock, we can design the code so that the threads retry acquiring the locks at random intervals. This will give the threads a fair chance to acquire the locks they need.
+Another way to take care of the liveness problem in the messaging system example we've discussed earlier is to put failed messages in a separate queue for further processing instead of putting them back in the same queue again.
+Source: https://www.baeldung.com/java-deadlock-livelock
 	
 ## Race Conditions
 
+1. Introduction
+What is a Race Condition? | Baeldung on Computer Science
+
+One of the most common problems in multithreaded applications is the problem of race conditions.
+In this tutorial, we’ll learn what race conditions are, the ways to detect them, and the approaches to handle them.
+2. Race Condition
+By definition, a race condition is a condition of a program where its behavior depends on relative timing or interleaving of multiple threads or processes. One or more possible outcomes may be undesirable, resulting in a bug. We refer to this kind of behavior as nondeterministic.
+Thread-safe is the term we use to describe a program, code, or data structure free of race conditions when accessed by multiple threads.
+Let’s consider a simple function for performing a funds transfer between two bank accounts:
+In this implementation, we thought thru the possibility to attempt to withdraw funds that are not available at the source account. Thus, we have a check for the amount available, and we expect the account balance would never go below zero. Let’s say we have accounts A and B, each having a balance of 500, and we perform two attempts to transfer 300 from A to B:
+
+However, if these two attempts are kicked off simultaneously, in different processes or threads, we may observe some undesired behavior:
+
+Given unpredictable thread scheduling, the order of specific steps is arbitrary. We’ve encountered a race condition due to the interleaving of our execution flows
+3. Check-Then-Act
+In our bank funds transfer example, we’ve observed the pattern check-then-act.
+This is the most common type of race condition. It’s defined by a program flow where a potentially stale observation is used to decide what to do next. We refer to the bugs produced by this condition as Time-of-check to time-of-use or TOCTOU bugs.
+TOCTOU races are often found to be the reason for security vulnerabilities on various platforms, specifically around file systems access. Attackers exploit these vulnerabilities to get privilege escalation or to perform a denial-of-service attack.
+Lazy initialization is yet another example of a check-then-act patter
+4. Read-Modify-Write
+While the check-then-act type of race condition is indeed the most common type we may encounter in multi-threaded applications, there’s another, easier-to-grasp type. Consider the following pseudocode, which uses the regular increment operation:
+
+ 
+In most languages, the regular increment operator represents three sequential operations — read, modify, and write.
+Since we haven’t indicated any atomic guarantee for this execution, if more than one execution is started, we may get the very same operation interleaving we’ve seen before:
+
+This type of condition is closely related to the data race. We’ll discuss this subtle difference below, but let’s talk about the practical aspects first.
+5. Detection
+A race condition is usually difficult to reproduce, debug, and eliminate. We describe the bugs introduced by race conditions as heisenbugs.
+Since race conditions are tied to application semantics, there’s no general way to detect them. Multi-threaded unit tests with a focus on test result stability will help but are unlikely to provide a 100% guarantee.
+
 ## Monitor Design Pattern
+One of eight concurrency patterns in Spring 5.
+
+### Monitor object pattern
+The monitor object pattern is another concurrency design pattern that helps in the execution of multi-threaded programs. It is a design pattern implemented to make sure that at a single time interval, only one method runs in a single object, and for this purpose, it synchronizes concurrent method execution.
+
+Unlike the active object design pattern, the monitor object pattern does not have a separate thread of control. Every request received is executed in the thread of control of the client itself, and until the time the method returns, the access is blocked. At a single time interval, a single synchronized method can be executed in one monitor.
+
+The following solutions are offered by the monitor object pattern:
+
+The synchronization boundaries are defined by the interface of the object, and it also makes sure that a single method is active in a single object.
+It must be ensured that all the objects keep a check on every method that needs synchronization and serialize them transparently without letting the client know. Operations, on the other hand, are mutually exclusive, but they are invoked like ordinary method calls. Wait and signal primitives are used for the realization of condition synchronization.
+To prevent the deadlock and use the concurrency mechanisms available, other clients must be allowed to access the object when the method of the object blocks during execution.
+The invariants must always hold when the thread of control is interrupted voluntarily by the method.
+Let's see the following diagram, which illustrates more about the monitor object design pattern in the concurrency application:
 
 
+In this preceding diagram, the client object calls the monitor object that has several synchronized methods and the monitor object associated with the monitor conditions and monitor locks. Let's explore each component of this concurrency design pattern as follows:
 
+Monitor object: This component exposes the methods that are synchronized to the clients
+Synchronized methods: The thread-safe functions that are exported by the interface of the object are implemented by these methods
+Monitor conditions: This component along with the monitor lock decides whether the synchronized method should resume its processing or suspend it
+The active object and the monitor object patterns are the branches of design patterns of concurrency.
+
+Now, the other type of concurrency patterns that we will discuss are the branches of architectural patterns for concurrency.
+
+(Source: Spring 5 Design Patterns, Dinesh Rajput, Ch. 12 Implementiing Concurrency Patterns, ISBN: 9781788299459)
