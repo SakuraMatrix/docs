@@ -417,5 +417,27 @@ Java Concurrency package covers concurrency, multithreading, and parallelism on 
 Java 5 added a new package to the java platform ⇾ java.util.concurrent package. This package has a set of classes and interfaces that helps in developing concurrent applications (multithreading) in java. Before this package, one needs to make the utility classes of their need on their own. 
 	
 	
+# Day 3:
+## Thread basics
+	
+## Thread pool
+	
+## Multithreading
+	
+## Concurrency
+	
+## Parallelism
+	
+## Synchronous vs Asynchronous
+	
+## Deadlocks and Livelocks
+	
+## Race Conditions
+
+## Monitor Design Pattern
+	
+	
+	
+	
 Team Google Doc:
 https://docs.google.com/document/d/1hrlZZUi9THzos57by3kLpQmsXwg2PVkDqKq_Y6GTghQ/edit?usp=sharing
