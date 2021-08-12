@@ -1019,3 +1019,23 @@ The active object and the monitor object patterns are the branches of design pat
 Now, the other type of concurrency patterns that we will discuss are the branches of architectural patterns for concurrency.
 
 (Source: Spring 5 Design Patterns, Dinesh Rajput, Ch. 12 Implementiing Concurrency Patterns, ISBN: 9781788299459)
+
+	
+# Day 4
+
+## Intro to Spring
+
+## Spring IOC Container
+
+## Spring Ecosystem
+
+## Dependency Injection
+
+## scopes of a bean
+
+## Spring bean lifecycle
+
+## Bean Factory vs Application Context
+
+## Spring Family
+
