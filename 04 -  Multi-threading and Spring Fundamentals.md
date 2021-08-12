@@ -1020,22 +1020,352 @@ Now, the other type of concurrency patterns that we will discuss are the branche
 
 (Source: Spring 5 Design Patterns, Dinesh Rajput, Ch. 12 Implementiing Concurrency Patterns, ISBN: 9781788299459)
 
-	
+
 # Day 4
 
 ## Intro to Spring
+### Spring
+Spring framework is an open source Java platform that provides comprehensive infrastructure support for developing robust Java applications very easily and very rapidly. Spring framework was initially written by Rod Johnson and was first released under the Apache 2.0 license in June 2003. 
+
+Why Learn Spring?
+Spring is the most popular application development framework for enterprise Java. Millions of developers around the world use Spring Framework to create high performing, easily testable, and reusable code.
+
+Spring is lightweight when it comes to size and transparency. The basic version of Spring framework is around 2MB.
+
+The core features of the Spring Framework can be used in developing any Java application, but there are extensions for building web applications on top of the Java EE platform. Spring framework makes J2EE development easier to use and promotes good programming practices by enabling a POJO-based programming model.
+
+#### Applications
+Microservices
+Reactive
+Cloud
+Web apps
+Serverless
+Event Driven
+Batch
+
+#### Applications of Spring
+Following is the list of few of the great benefits of using Spring Framework −
+
+POJO Based - Spring enables developers to develop enterprise-class applications using POJOs. The benefit of using only POJOs is that you do not need an EJB container product such as an application server but you have the option of using only a robust servlet container such as Tomcat or some commercial product.
+
+Modular - Spring is organized in a modular fashion. Even though the number of packages and classes are substantial, you have to worry only about the ones you need and ignore the rest.
+
+Integration with existing frameworks - Spring does not reinvent the wheel. Instead it truly makes use of some of the existing technologies like several ORM frameworks, logging frameworks, JEE, Quartz and JDK timers, and other view technologies.
+
+Testability - Testing an application written with Spring is simple because environment-dependent code is moved into this framework. Furthermore, by using JavaBeanstyle POJOs, it becomes easier to use dependency injection for injecting test data.
+
+Web MVC - Spring's web framework is a well-designed web MVC framework, which provides a great alternative to web frameworks such as Struts or other over-engineered or less popular web frameworks.
+
+Central Exception Handling - Spring provides a convenient API to translate technology-specific exceptions (thrown by JDBC, Hibernate, or JDO, for example) into consistent, unchecked exceptions.
+
+Lightweight - IoC containers tend to be lightweight, especially when compared to EJB containers, for example. This is beneficial for developing and deploying applications on computers with limited memory and CPU resources.
+
+Transaction management - Spring provides a consistent transaction management interface that can scale down to a local transaction (using a single database, for example) and scale up to global transactions (using JTA, for example).
+
+#### Advantages
+Trusted
+Flexible
+Productive 
+Fast
+Secure
+Supportive
+
+(Source: https://www.tutorialspoint.com/spring/index.htm  )
+
 
 ## Spring IOC Container
+### Dependency Injection (DI)
+The technology that Spring is most identified with is the Dependency Injection (DI) flavor of Inversion of Control. The Inversion of Control (IoC) is a general concept, and it can be expressed in many different ways. Dependency Injection is merely one concrete example of Inversion of Control.
+
+When writing a complex Java application, application classes should be as independent as possible of other Java classes to increase the possibility of reusing these classes and to test them independently of other classes while unit testing. Dependency Injection helps in gluing these classes together and at the same time keeping them independent.
+
+What is dependency injection exactly? Let's look at these two words separately. Here the dependency part translates into an association between two classes. For example, class A is dependent on class B. Now, let's look at the second part, injection. All this means is, class B will get injected into class A by the IoC.
+
+Dependency injection can happen in the way of passing parameters to the constructor or by post-construction using setter methods. As Dependency Injection is the heart of Spring Framework, we will explain this concept in a separate chapter with relevant example.
+### Spring - IoC Containers
+The Spring container is at the core of the Spring Framework. The container will create the objects, wire them together, configure them, and manage their complete life cycle from creation till destruction. The Spring container uses DI to manage the components that make up an application. These objects are called Spring Beans, which we will discuss in the next chapter.
+The container gets its instructions on what objects to instantiate, configure, and assemble by reading the configuration metadata provided. The configuration metadata can be represented either by XML, Java annotations, or Java code. The following diagram represents a high-level view of how Spring works. The Spring IoC container makes use of Java POJO classes and configuration metadata to produce a fully configured and executable system or application.
+
+Spring provides the following two distinct types of containers.
+Sr.No.
+Container & Description
+1
+Spring BeanFactory Container
+This is the simplest container providing the basic support for DI and is defined by the org.springframework.beans.factory.BeanFactory interface. The BeanFactory and related interfaces, such as BeanFactoryAware, InitializingBean, DisposableBean, are still present in Spring for the purpose of backward compatibility with a large number of third-party frameworks that integrate with Spring.
+2
+Spring ApplicationContext Container
+This container adds more enterprise-specific functionality such as the ability to resolve textual messages from a properties file and the ability to publish application events to interested event listeners. This container is defined by the org.springframework.context.ApplicationContext interface.
+
+The ApplicationContext container includes all functionality of the BeanFactorycontainer, so it is generally recommended over BeanFactory. BeanFactory can still be used for lightweight applications like mobile devices or applet-based applications where data volume and speed is significant.
+
+
+
+(Source: https://www.tutorialspoint.com/spring/spring_overview.htm )
+
 
 ## Spring Ecosystem
 
+https://springtutorials.com/spring-ecosystem/
+
+
+The image splits the Spring Framework Ecosystem into five parts.
+You will see three arrows going from left to right. The three arrows split the Projects into four parts:
+1) Web layer, 2) Common layer, 3) Service layer and 4) Data layer. 
+The three projects at the bottom of the page comprise the fifth part.
+They are 5) Foundation projects and can span many layers.
+1) Spring Projects on the Web layer
+The following Spring projects help you with your front-end development.
+Spring HATEOAS
+Spring Mobile
+Spring Web Flow
+Spring Session
+Spring Web Services
+Spring Social
+Spring for Android
+Spring Security
+Spring Security is at the center of all these projects for a reason.
+It does not mean these projects surrounding Spring Security are dependent on it, but implies that all web layer projects can make use of Spring Security.
+In the production environment, you will want to see these Spring Projects leveraging Spring Security.
+I will go over these projects one by one and share few sentences on what they do. Later, I will identify how you can bring it in your project.
+If you can use it with other Spring Projects or if a project pulls other external libraries, I will bring that up as well.
+In my next post, You will see ALL web layer projects pull some common modules. I will provide details of Spring modules then.
+For now, please note that I am skimming over these topics. The goal here is for you to be familiar with them.
+Let’s start with Spring Session.
+a) Spring Session allows you to handle web sessions in your application.
+You shouldn’t store anything in HttpSession but if you must, then Spring Session Project can help you.
+Use Spring Session with Spring Data Redis and you can store any session data into Redis datastore. This makes it short-lived, fast, and temporary. Also, it can solve your clustering problem.
+Spring Session is a Web layer project. Spring Data is a Data layer project. And they work great together.
+Spring Data Redis subproject will pull java Redis client – Jedis by default. It will also pull apache commons-pool as a result.
+To use it in your project, you just need to set up the Redis Connection Factory. Spring Session will do all the magic.
+You don’t need to write any more code here. So, it is easy to introduce or pull Spring Session out of your project with minimal effort.
+b) Spring Web Services helps you build a contract-first SOAP-based web service. It also helps you consume an SOAP-based web service with Spring.
+Contract-first based web service means you write WSDL first. WSDL stands for Web Services Description Language. It is the language of the SOAP web service. You need it to explain to your client what they can consume. It defines the contract.
+In my opinion, a Java developer shouldn’t have to worry about description language. He should write a service in java and then a project / framework  would take care of exposing it as a web service. In my projects, I used Axis2 with Spring to achieve this.
+I am not a big fan of contract-first approach to web service development. I plan to address this in a future post. For now, Let’s move on.
+Spring WS pulls in Spring OXM module for converting XML into java and vice versa. This is also called Marshalling / Unmarshalling.
+Spring WS code to publish a web service involves annotating your POJOs. The configuration includes generating classes from XML schema and writing logic to populate them.
+It may not be easy to introduce or pull out of the Project as some code dependencies get introduced.
+c) Spring Social lets facebook, LinkedIn, twitter and other users log into your site. This eliminates the need for a user to create a new account for your application.
+Including it in your application involves setting up configurations based on providers. It is a standard set of code that you write once.
+There is some initial setup needed to get this working. But swapping the facebook login to your home-grown login is easy. Thanks to Spring Security.
+d) Spring for Android helps you build native android applications.
+This is not invasive by any means. The bigger effort here is learning android SDK and getting used to Android Studio.
+In my opinion, Mobile-first Javascript MVC frameworks are a much better option. They are easy to build and debug.
+Spring Android team, if you are reading this, I’d love to know otherwise.
+e) Spring HATEOAS helps your create REST representations that follow HATEOAS principle.
+Here is another effort to explain what it means:
+Your web page provides links to other pages.
+With HATEOAS, your REST services can return metadata about other discoverable services or representations.
+This is the premise behind semantic web. And I know one person who can explain it well: Brian Sletten.
+Check out Brian Sletten’s article on HATEOAS.  Here is a video of him going over REST. If you would like to understand the R in REST, I suggest you check out this post from him as well.
+Spring HATEOAS sits on top of Spring web-MVC. It has no other dependency which makes it easy to introduce or pull it out of your projects.
+f) Spring Mobile helps you build mobile friendly pages. It can detect if your requests are coming from a mobile device.
+You can then render pages based on this information as you see fit.
+It is easy to add to your view renderer. In my case, I was using tiles to send users to appropriate pages based on the device.
+So you write two sets of web pages, one that caters to mobile device audience and the other one for regular web.
+I don’t know if this is a good approach. Once again, I think there is a better way in javascript MVC frameworks like Angular JS to achieve this.
+AngularJS provides a responsive design. You may not need two sets of pages as a result.
+It is easy to introduce Spring Mobile and pull it out if needed.
+g) Spring Web Flow splits data into many screens for easy navigation.
+Some of Spring Projects are frameworks. They take some time to incorporate into your project. Once they are in, they can provide for a lot of features. Once they are in, they are hard to replace as time goes by.
+Spring Web Flow fits in here. If you decide to replace Spring Web Flow, you have to think about how to handle things that were a given.
+It many not be easy to replace. And for a good reason.
+All those hidden variables that Spring Web Flow handled for you – You may have to handle them on your own now.
+h) Spring Security is at the heart of this layer. If you are writing a web application,  you will need to interact with a robot or a user at some point. Spring Security makes your application secure. It controls who can interact with your application and at what levels.
+Spring Security is almost irreplaceable in my opinion.
+I have heard good things about Apache Shiro but have not tried it yet. If I skip Apache Shiro for a few seconds, I can’t imagine replacing Spring Security Framework. Any custom solution just wouldn’t cut it.
+The separation of concern and level of isolation Spring Security provides is excellent. Try implementing it yourself with filters and you will appreciate its power more.
+Spring Security bring its own database schema. If you are not overriding the schema, You may need database team approval.
+Spring Security can include Spring LDAP for authentication and/or authorization.
+2) Common layer – Spring Framework Project
+All these projects in different layers have one thing in common:
+They all leverage Spring Framework.
+A Spring Framework has 20 modules as I mentioned earlier. These twenty modules fall under six categories.
+1) Spring Web
+2) Spring Test
+3) Spring Data Access/Integration
+4) Spring AOP and Instrumentation
+5) Spring Messaging
+6) Spring Core Container
+When I say they all leverage Spring Framework, I mean:
+All Spring Projects make use of one or more of these modules.
+That’s all I want to say about modules today. More to come soon.
+3) Service layer Projects
+In my little experience, the following projects would make great services.
+This is debatable, though, but I have a reason to include them into service layer and am willing to take my chances.
+Spring Integration
+A file poller scenario I gave in my previous post is a good example.
+If you think about it, file polling might fit into data layer as well. After all, you are dealing with data here.
+But then again, You are polling which is not a true data manipulation. It is an event.
+You want to capture this event on a service layer. The process is more visible that way. You can take some action based on this event now.
+And these actions could mean data manipulation for sure.  Data manipulation belongs in the data layer. The event – not so much.
+Spring Integration is perfect for handling event-based actions. You can plug it on top of any Spring Data layer projects.
+Spring Cloud
+I am new to Spring Cloud.
+I was thinking Spring Cloud should be a foundation layer project at first. I will discuss foundation layer projects soon. With so many subprojects under it, I can see Spring Cloud Project as a toolkit.
+And it IS a toolkit for building distributed applications. Let me explain.
+Let’s say you were building a service that you would want to distribute and scale at some point. What are some of the things that you would have to take into account?
+I would want the service to scale. If the calls grow, the service should handle it.
+I would want discoverability. If few nodes die, the service shouldn’t die. It should know to at least reconfigure and remove the dead nodes from its network.
+I should have a way to see the nodes and their status.
+I would want it to be distributed.  Regardless of nodes dying, It should finish the job.
+I would love for it to be testable. I want to be able to simulate all the aspects of distributed app.
+I see subprojects under Spring Cloud that handle log tracing, configuration management, and security.
+I see subprojects under Spring Cloud that handle discovery. I see that I can upload my service to the cloud foundry for scalability.
+I see that Spring Cloud lets me write a service once that I can deploy in any infrastructure.
+But I do realize that as a Developer, I would expose parts of my application to this distribution. Not the entire application.
+So, I would expose my services to Spring Cloud. And I decided to add it to Service layer.
+The best way to include Spring Cloud projects in your application would be via the release train.
+Each release train will know to pull right dependencies for specific subprojects for you.
+These dependencies are complex. These dependencies are many projects weaved together for compliance.
+In maven convention, release trains are BOM – Bill of Materials.
+ 
+This needs some explanation….
+ 
+A POM in maven is a Project Object Model. It contains all the libraries your application needs. If you use maven in your application, this is your pom.xml.
+Spring Cloud projects could have intricate dependencies. Instead of letting Spring developers meddle with versions, Spring Cloud put together a BOM.
+A BOM has in it defined all the libraries and their versions that a developer will need to pull.
+A project leveraging Spring Cloud would bring this BOM into dependencyManagement in its POM.
+Now you could bring a Spring Cloud subproject into your application. And the BOM would take care of the versions.
+First I heard of BOM was in regards to JBoss AS7 application server.
+I don’t know how easy it would be to bring Spring Cloud into your projects or pull it out yet. I am still learning this one.
+4) Data layer Projects
+The projects in this layer deal with data handling and manipulation. Let’s discuss them one by one below.
+Spring AMQP
+Spring AMQP abstracts out dealing with sending and receiving messages. It provides a low-level template to interact with data. It provides a connection factory. It provides a pre-built implementation in RabbitMQ.
+It provides a listener container. For this reason, It almost fell into Service layer project. I had to think at least ten times before pulling it out of Service layer.
+What made my decision to keep it in Data layer? I realized that with spring, a developer deals with messages via a template. Just like when he deals with the databases with jdbcTemplate.
+Note: Spring Rabbit will bring RabbitMQ and Jackson libraries with it. I like RabbitMQ. You should check it out.
+Spring LDAP
+Some Spring projects are libraries. They can go into your project with minimal impact to the rest of the code.
+Spring LDAP is a good example.
+Add Spring LDAP to your project as a library. Create a service to look up users’ roles and swap it as an implementation to do authorization. If you use Spring Security, your application won’t even notice this change.
+Spring LDAP is easy to introduce in your project. It is easy to pull out as well.
+Spring Data
+Spring Data, like Spring Cloud, is another umbrella project with many wonderful offerings.
+Think of Spring Data as a common API to do CRUD operations for different databases. It has support for all the popular SQL as well as NoSQL databases.
+With Spring Data, It is possible to swap your database with minimal code changes. Especially if you don’t do anything database-specific with your code.
+If you use Hibernate, you could use Spring Data JPA underneath it. You will cut down your boilerplate code to a great extent.
+You won’t be writing CREATE, READ, UPDATE and DELETE (CRUD) implementations now.
+You won’t be implementing ANDs or FindBy methods anymore.
+What will you do with all that extra time?
+If you take Spring Data out of your project, you do all the boilerplate coding.
+Spring Data provides a BOM for inclusion as well.
+Spring Batch
+Some Projects need extra time and resource investment.
+Spring Batch, like Spring Web Flow, is another example of framework project. It is a framework with lots of features. And it requires commitment.
+You can use Spring Batch to do any bulk processing job. These are long running queries that you need running in the background.
+Spring Batch, like Spring Security, bring its own database schema. It takes time to learn the schema. I don’t know if you want to override their schema. So you will need database team approval here.
+It is not easy to replace the features Spring Batch provides.
+5) Foundation Projects
+Some of the Spring Projects are platforms. In the image above, you see them at the bottom of the page.
+These projects don’t belong to any one layer. Rather, they serve as a foundation for other Spring Projects. Let’s discuss them below.
+Spring IO Platform
+I am new to Spring IO.
+If you were starting your application from scratch. And if you have decided to use Spring Framework, which library would you pull first?
+You will need to include just one BOM: platform-bom
+You could then bring in any of the Spring Projects without worrying about their versions. Or dependencies. BOM includes all the information.
+Spring IO makes it easy to bring in what you need for your application.
+Spring IO Platform provides Spring Boot under its belt.
+You could use Spring Boot to run the application that you built using Spring IO Platform.
+You are not tied to Spring IO platform. It generates the artifacts which you can decide to edit as you see fit.
+Spring Boot
+It is the easiest way to build and run your application. It gives you a command line tool to build an application in shortest time frame.
+The tool generates the ‘same old same old’ code you write when you start an application.
+I use WordPress for hosting Spring Tutorials Blog. Spring Boot is like installing a WordPress plugin for me.
+The plugin gets installed and configured with default values with a click of a button.
+It cuts down your getting up and running time.
+Spring Boot is a facilitator of your application. You can get started with it and later decide to not leverage it.
+Spring XD
+I am new to Sping XD.
+Spring Cloud provides a way to build and manage distributed services.
+Spring XD provides a way to build and manage big data applications. Spring XD also helps you perform big data analytics on these applications.
+This implies the ability to leverage big data Hadoop or other technologies with minimal effort.
+I see that Spring XD is being rebuilt on top of Spring Boot and Spring Cloud.
+I am sure Spring XD will simplify weaving all aspects of big data applications. Taking it out of your project may not be the best idea.
+
+
 ## Dependency Injection
 
+In software engineering, dependency injection is a technique in which an object receives other objects that it depends on, called dependencies. Typically, the receiving object is called a client and the passed-in ('injected') object is called a service. The code that passes the service to the client is called the injector. Instead of the client specifying which service it will use, the injector tells the client what service to use. The 'injection' refers to the passing of a dependency (a service) into the client that uses it.
+The service is made part of the client's state.[1] Passing the service to the client, rather than allowing a client to build or find the service, is the fundamental requirement of the pattern.
+The intent behind dependency injection is to achieve separation of concerns of construction and use of objects. This can increase readability and code reuse.
+Dependency injection is one form of the broader technique of inversion of control. A client who wants to call some services should not have to know how to construct those services. Instead, the client delegates to external code (the injector). The client is not aware of the injector.[2] The injector passes the services, which might exist or be constructed by the injector itself, to the client. The client then uses the services.
+This means the client does not need to know about the injector, how to construct the services, or even which services it is actually using. The client only needs to know the interfaces of the services, because these define how the client may use the services. This separates the responsibility of 'use' from the responsibility of 'construction'.
+Types of dependency injection
+
+There are at least three ways a client can receive a reference to an external module:[31]
+Constructor injection: The dependencies are provided through a client's class constructor.
+Setter injection: The client exposes a setter method that the injector uses to inject the dependency.
+Interface injection: The dependency's interface provides an injector method that will inject the dependency into any client passed to it.
+DI frameworks and testing frameworks can use other types of injection.[32]
+Some modern testing frameworks do not even require that clients actively accept dependency injection, thus making legacy code testable. In Java, reflection can make private attributes public when testing and thus accept injections by assignment.[33]
+Some attempts at Inversion of Control simply substitute one form of dependency for another. As a rule of thumb, if a programmer can look at nothing but the client code and tell what framework is being used, then the client has a hard-coded dependency on the framework.
+
+
 ## scopes of a bean
+The Spring Framework supports the following five scopes, three of which are available only if you use a web-aware ApplicationContext.
+Each scope is explained in detail with examples (about 10 pages long) on this link:
+https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html
+Sr.No.
+Scope & Description
+1
+singleton
+This scopes the bean definition to a single instance per Spring IoC container (default).
+2
+prototype
+This scopes a single bean definition to have any number of object instances.
+3
+request
+This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+4
+session
+This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+5
+global-session
+This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+
 
 ## Spring bean lifecycle
+Bean life cycle in Java Spring
+The lifecycle of any object means when & how it is born, how it behaves throughout its life, and when & how it dies. Similarly, the bean life cycle refers to when & how the bean is instantiated, what action it performs until it lives, and when & how it is destroyed. In this article, we will discuss the life cycle of the bean. 
+Bean life cycle is managed by the spring container. When we run the program then, first of all, the spring container gets started. After that, the container creates the instance of a bean as per the request, and then dependencies are injected. And finally, the bean is destroyed when the spring container is closed. Therefore, if we want to execute some code on the bean instantiation and just after closing the spring container, then we can write that code inside the custom init() method and the destroy() method.
+The following image shows the process flow of the bean life cycle.  
+
+Bean Life Cycle Process Flow
+
 
 ## Bean Factory vs Application Context
+(Both are Spring IoC Containers)
+BeanFactory loads beans on-demand, while ApplicationContext loads all beans at startup. Thus, BeanFactory is lightweight as compared to ApplicationContext.
+ApplicationContext enhances BeanFactory in a more framework-oriented style and provides several features that are suitable for enterprise applications.
+For instance, it provides messaging (i18n or internationalization) functionality, event publication functionality, annotation-based dependency injection, and easy integration with Spring AOP features.
+Apart from this, the ApplicationContext supports almost all types of bean scopes, but the BeanFactory only supports two scopes — Singleton and Prototype. Therefore, it's always preferable to use ApplicationContext when building complex enterprise applications.
+The ApplicationContext automatically registers BeanFactoryPostProcessor and BeanPostProcessor at startup. On the other hand, the BeanFactory does not register these interfaces automatically.
+
+The ApplicationContext comes with advanced features, including several that are geared towards enterprise applications, while the BeanFactory comes with only basic features. Therefore, it's generally recommended to use the ApplicationContext, and we should use BeanFactory only when memory consumption is critical.
+
+Source: https://www.baeldung.com/spring-beanfactory-vs-applicationcontext
 
 ## Spring Family
+Spring Boot
+Spring Framework
+Spring Data
+Spring Cloud
+Spring Cloud Data Flow
+Spring Security
+Spring GraphQL
+Spring Session
+Spring Integration
+Spring HATEOAS
+Spring REST Docs
+Spring Batch
+Plus more...
+(see Spring Ecosystem from previous section)
+
+
+
+
+
+
 
