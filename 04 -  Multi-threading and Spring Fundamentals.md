@@ -12,9 +12,6 @@ Video streaming platforms Netflix, Hulu, youtube…
 Online video games
 Developers that need to work together in a shared environment
 
-
-
-
 ## Benefits of Cloud Computing
 ### Agility
 The cloud is agile. Infrastructure resources can spin up when necessary. Among these resources are compute, storage, databases, Internet of things (IoT), machine learning, analytics, and more.
@@ -1363,9 +1360,97 @@ Spring Batch
 Plus more...
 (see Spring Ecosystem from previous section)
 
+DAY 5
+-------------------------------------------------------------------------
+# @Autorwired
+The @Autowired annotation provides more fine-grained control over where and how autowiring should be accomplished. The @Autowired annotation can be used to autowire bean on the setter method just like @Required annotation, constructor, a property or methods with arbitrary names and/or multiple arguments.
 
+## @Autowired on Setter Methods
+You can use @Autowired annotation on setter methods to get rid of the <property> element in XML configuration file. When Spring finds an @Autowired annotation used with setter methods, it tries to perform byType autowiring on the method.
+	
+# Sterotype Annotations in Spring
+Spring has provided four very useful types of stereotype annotations. If any class or bean is annotated with one of these annotations, Spring will automatically create the object of that bean and register that bean in the Spring container. Now that bean will be available for the entire application to use and we can inject those beans in any layer of the application. These annotations, listed below, are found in the org.springframework.stereotype package.
+	
+# @Compontent, @Service @Repository
 
+1. @Controller: This annotation is for the controller classes of the application and is available for the presentation layer component. 
 
+2. @Service: This annotation is for the service classes of the application where we write the business logic.
 
+3. @Component: This is a generic annotation which we can use to  annotate REST resource classes; they can be used anywhere in the application. 
 
+4. @Repository: This annotation is used for the repository layer components where we can contact the database directly.
+                                                                                   
+Spring 2.0 introduced the first stereotype annotation named as @Repository. The @Component annotation was introduced in Spring 2.5 version. Spring stereotype annotations are the markers for any class that fulfills a role within the application. These annotations have greatly reduced the burden of developers to write the code for configuring the beans in the spring configuration document. Note: These annotations are used for concrete classes but not for interfaces. 
 
+@Controller annotation is for the class as a Spring MVC controller. It is a meta-annotation of @Component, so beans annotated with @Controller that means Spring container will detect these annotations and loads those classes marked with this annotation and container will create those objects and fully initialized bean will be ready into the container for use. If we are using this annotation then we can use handler mapping annotation @RequestMapping to mark our methods inside the controller classes at which request what method should invoke.
+
+@Service annotation is for service classes in our application.
+
+@Component annotation is for when our classes do not fall into either of three categories i.e. @Controller, @Service, and DAOs.
+
+@Repository annotation is for persistence layer components. The repository is a very suitable annotation for DAOs, thus providing extra benefits to the DAOs.
+
+Note: The @Repository annotation is a meta-annotation of the @Component annotation with similar use and functionality. In a repository annotated class, we can write the code to contact the persistence layer which is just a database.
+
+Enabling Component Scanning: Spring Container does not create instances for those classes which are annotated with these stereotype annotations. Therefore, we have to enable component scanning explicitly in the Spring configuration document by using < context:component-scan> tag. This way, stereotype annotations will be scanned and configured only when they are scanned by the Spring Container of the Spring framework.
+
+<context:comonent-scan base-package="com.java.trading.service" />
+<context:component-scan base-package="com.java.trading.repository" />
+<context:component-scan base-package="com.java.trading.controller" />
+	
+Spring recommends we declare specific component-scan elements instead of using the top package for scanning.
+
+We should always use these annotations over the concrete classes of the application; not over the interfaces.
+
+# Java package structure with Spring 
+## Separation of layers, each layer is an individual module/project
+### REST API
+* Packaged as war (Could be jar if you are using spring boot with embedded server. Spring boot doc clearly explains how to deploy the so-call uber jar. It is deadly simple.)
+* It has rest controllers that handle request/responses
+* depends on Service Module below
+### Service
+* Packaged as jar
+* Business logic abstractions, this layer has no idea how to communicate with datasource.
+* It will be autowired in rest controllers
+* Depends on DAO/Repository module below
+### DAO/Repository
+* Packaged as jar
+* Talks to data source directly, has operations commonly known as CRUD. It could be simple jdbc, JPA, or even file access.
+* Depends on domain module below
+### Domain
+* Packaged as jar
+* It has your domain models, normally POJO classes. If you are using ORM, they are ORM entities.
+* It could also have DTO (Data Transfer Object), which are still under hot debates. Use it or not is your call.
+* You can add more modules such as utility, third party integration, etc,.,but the above are highly recommended to have.
+	
+# Spring Modules
+The Spring framework comprises of many modules such as core, beans, context, expression language, AOP, Aspects, Instrumentation, JDBC, ORM, OXM, JMS, Transaction, Web, Servlet, Struts etc. These modules are grouped into Test, Core Container, AOP, Aspects, Instrumentation, Data Access / Integration, Web (MVC / Remoting).
+	
+## Test
+This layer provides support of testing with JUnit and TestNG.
+
+## Spring Core Container
+The Spring Core container contains core, beans, context and expression language (EL) modules.
+
+## Core and Beans
+These modules provide IOC and Dependency Injection features.
+
+## Context
+This module supports internationalization (I18N), EJB, JMS, Basic Remoting.
+
+## Expression Language
+It is an extension to the EL defined in JSP. It provides support to setting and getting property values, method invocation, accessing collections and indexers, named variables, logical and arithmetic operators, retrieval of objects by name etc.
+
+## AOP, Aspects and Instrumentation
+These modules support aspect oriented programming implementation where you can use Advices, Pointcuts etc. to decouple the code.
+
+The aspects module provides support to integration with AspectJ.
+
+The instrumentation module provides support to class instrumentation and classloader implementations.
+
+## Data Access / Integration
+This group comprises of JDBC, ORM, OXM, JMS and Transaction modules. These modules basically provide support to interact with the database.
+
+## Web
+This group comprises of Web, Web-Servlet, Web-Struts and Web-Portlet. These modules provide support to create web application.
