@@ -3,27 +3,29 @@
 ### Cloud Computing
 Cloud computing is a collection of online managed services (especially data storage and computing power) owned, run, and maintained by a cloud provider, without direct active management from users. Pay for what you use.
 
-#### Users
-Organizations of any type, size, or industry use cloud computing. For example:
-Mobile apps companies
-Websites
-Large organizations with extended IT services
-Video streaming platforms Netflix, Hulu, youtube…
-Online video games
-Developers that need to work together in a shared environment
+#### Users of Clud Computer 
+* Organizations of any type, size, or industry use cloud computing. For example:
+* Mobile apps companies
+* Websites
+* Large organizations with extended IT services
+* Video streaming platforms Netflix, Hulu, youtube…
+* Online video games
+* Developers that need to work together in a shared environment
 
 
 
 
 ## Benefits of Cloud Computing
 ### Agility
-The cloud is agile. Infrastructure resources can spin up when necessary. Among these resources are compute, storage, databases, Internet of things (IoT), machine learning, analytics, and more.
+* The cloud is agile. 
+* Infrastructure resources can spin up when necessary. 
+* Among these resources are compute, storage, databases, Internet of things (IoT), machine learning, analytics, and more.
 
 ### Elasticity
-The cloud has the ability to handle peak levels of business activity automatically and on-demand, by scaling resources up or down to shrink or grow capacity when the business needs change.
+The cloud has the ability to handle peak levels of business activity automatically and on-demand by scaling resources up or down to shrink or grow capacity when the business needs change.
 
 ### Economy
-Because cloud computing removes the traditional costs of owning and maintaining hardware, and payment is only for usage, the cost savings are very large. On top of that cloud computing providers offer steep discounts for some resources, such as compute, if the workflow on them can be interrupted. This even further increases the cost-savings of running in the cloud.
+Because cloud computing removes the traditional costs of owning and maintaining hardware, and payment is only for usage, the cost savings are very large. On top of that, cloud computing providers offer steep discounts for some resources, such as compute, if the workflow on them can be interrupted. This further increases the cost-savings of running in the cloud.
 
 ### Availability
 Cloud computing providers offer their services in many locations within a geographical region, and in many locations around the globe. This extends the availability and durability of cloud services.
@@ -34,62 +36,62 @@ Infrastructure as a service (IaaS), also known as cloud infrastructure services,
 
 IaaS is fully self-service for accessing and monitoring computers, networking, storage, and other services.
 
-This model allows businesses to purchase resources on-demand and as-needed, instead of having to buy the hardware outright.
+This model allows businesses to purchase resources on-demand and as-needed instead of having to buy the hardware outright.
 
 ##### IaaS Characteristics
-Resources are available as a service
-Cost varies depending on consumption
-Services are highly scalable
-Multiple users share a single piece of hardware
-Organization retain control of the infrastructure
-Dynamic and flexible
+* Resources are available as a service
+* Cost varies depending on consumption
+* Services are highly scalable
+* Multiple users share a single piece of hardware
+*  Organization retain control of the infrastructure
+*Dynamic and flexible
 
 #### Platform as a service (PaaS)
-Platform as a service (PaaS), also known as cloud platform services, allows developers to build upon a framework to create custom applications. By obstructing or hiding servers, storage, and networking, PaaS providers help developers focus on managing their applications, rather managing the base infrastructure. Heroku is an example of a PaaS provider.
+Platform as a service (PaaS), also known as cloud platform services, allows developers to build upon a framework to create custom applications. By obstructing or hiding servers, storage, and networking, PaaS providers help developers focus on managing their applications rather managing the base infrastructure. Heroku is an example of a PaaS provider.
 
 ##### PaaS Characteristics
-Builds on virtualization technology, so resources can easily be scaled up or down
-Provides a variety of services to assist with the development, testing, and deployment of apps
-Accessible to numerous users via the same development application
-Integrates web services and databases
+* Builds on virtualization technology, so resources can easily be scaled up or down
+* Provides a variety of services to assist with the development, testing, and deployment of apps
+* Accessible to numerous users via the same development application
+* Integrates web services and databases
 
 #### Software as a service (SaaS)
 The most common option for cloud use, allowing 3rd-party vendors to deliver applications that run in the browser, without any installation. For example, G Suite is a SaaS solution for office apps in your browser.
 
 ##### SaaS characteristics:
-Managed from a central location
-Hosted on a remote server
-Accessible in a browser (sometimes even when the user is offline)
-Users are not responsible for hardware or software updates
+* Managed from a central location
+* Hosted on a remote server
+* Accessible in a browser (sometimes even when the user is offline)
+* Users are not responsible for hardware or software updates
 
 ### Cloud Deployment Models
 #### Public Deployment
 The Public Deployment model is the most common deployment model. Services face the Internet and share hardware, network, and storage across many organizations and tenants.
 
 ##### Advantages
-Cost-effective
-Pay-as-you-go - only pay for resources you use
-Maintenance-free - the cloud provider is responsible
+* Cost-effective
+* Pay-as-you-go - only pay for resources you use
+* Maintenance-free - the cloud provider is responsible
 
 #### Private Deployment
 The Private Deployment model limits each deployment to a single organization. This model provides better control of network security. Resources are not shared between organizations and tenants, which reduces risk.
 
-The private cloud can be an on-premise or it can be hosted by a cloud provider. Even if the deployment is hosted by a cloud provider, all of the hardware and software is dedicated to one organization.
+The private cloud can be on-premise or it can be hosted by a cloud provider. Even if the deployment is hosted by a cloud provider, all of the hardware and software is dedicated to one organization.
 
-The Private Deployment model is often used by governments, financial institutions, or organizations that must comply with strict regulatory protocols
+The Private Deployment model is often used by governments, financial institutions, or organizations that must comply with strict regulatory protocols.
 
 ##### Advantages
 
-Supports highly customized networks
-Facilitates tighter security and privacy
-Provides greater control over infrastructure
+* Supports highly customized networks
+* Facilitates tighter security and privacy
+* Provides greater control over infrastructure
 
 #### Hybrid Deployment
 The Hybrid Deployment model is a mix of the Public and Private Deployment models, combining the benefits of both.
 
 This model offers the flexibility of running on private infrastructure, but the model can switch to the public cloud when permissible, to realize the benefits such as cost-savings.
 
-In Hybrid Deployment data can flow from the private cloud to the public cloud and vice versa.
+In Hybrid Deployment, data can flow from the private cloud to the public cloud and vice versa.
 
 The downside of a hybrid deployment model is the cost of configuring and maintaining services across both types of clouds.
 
@@ -97,13 +99,6 @@ The downside of a hybrid deployment model is the cost of configuring and maintai
 Cost savings is one of the reasons why companies are moving into the Cloud, but these costs can get out of hand easily.
 
 Cloud providers supply up-to-date pricing information for all of their services and components.
-
-Let's explore one way to estimate the costs for the infrastructure we need on AWS using the AWS Pricing Calculator.
-
-
-
-
-
 
 ###When Not to Use The Cloud
 There are situations in which the costs of running in the cloud surpass the costs of running and maintaining a set of servers.
@@ -114,41 +109,33 @@ Other examples include the Private deployment model, which might be on-premise f
 
 Even though the cloud has many managed services, cloud applications still require an experienced engineer with security, networking, and cloud skills to maintain the application. If an organization lacks such a person, the cloud might not be a good option.
 
-
-
-
-
-
 ## Deploy an API to AWS Manually
 AWS provides documentation on how to create a serverless web application utilizing RESTful API’s.
 
 ### Architecture Overview
 
-
-
 ### Steps
-Create a new REST API
-In the AWS Management Console, click Services then select API Gateway under Application Services.
-Choose Create API.
-Select New API and enter `WildRydes` for the API Name.
-Keep `Edge optimized` selected in the Endpoint Type dropdown. Note: Edge optimized are best for public services being accessed from the Internet. Regional endpoints are typically used for APIs that are accessed primarily from within the same AWS Region.
-Choose Create API
-Create a Cognito User Pools Authorizer
-Amazon API Gateway can use the JWT tokens returned by Cognito User Pools to authenticate API calls. In this step you'll configure an authorizer for your API to use the user pool you created in Module 2.
-In the Amazon API Gateway console, create a new Cognito user pool authorizer for your API. Configure it with the details of the user pool that you created in the previous module. You can test the configuration in the console by copying and pasting the auth token presented to you after you log in via the /signin.html page of your current website.
-Under your newly created API, choose Authorizers.
-Chose Create New Authorizer.
-Enter WildRydes for the Authorizer name.
-Select Cognito for the type.
-In the Region drop-down under Cognito User Pool, select the Region where you created your Cognito user pool in module 2 (by default the current region should be selected).
-Enter WildRydes (or the name you gave your user pool) in the Cognito User Pool input.
-Enter Authorization for the Token Source.
-Choose Create.
-Verify your authorizer configuration
-Open a new browser tab and visit /ride.html under your website's domain.
-If you are redirected to the sign-in page, sign in with the user you created in the last module. You will be redirected back to /ride.html.
-Copy the auth token from the notification on the /ride.html,
-Go back to previous tab where you have just finished creating the Authorizer
+1) Create a new REST API
+2) In the AWS Management Console, click Services then select API Gateway under Application Services.
+3) Choose Create API.
+4) Select New API and enter `WildRydes` for the API Name.
+5) Keep `Edge optimized` selected in the Endpoint Type dropdown. Note: Edge optimized are best for public services being accessed from the Internet. Regional endpoints are typically used for APIs that are accessed primarily from within the same AWS Region.
+6) Choose Create API
+7) Create a Cognito User Pools Authorizer. Amazon API Gateway can use the JWT tokens returned by Cognito User Pools to authenticate API calls. In this step, you'll configure an authorizer for your API to use the user pool you created in Module 2.
+8) In the Amazon API Gateway console, create a new Cognito user pool authorizer for your API. Configure it with the details of the user pool that you created in the previous module. You can test the configuration in the console by copying and pasting the auth token presented to you after you log in via the /signin.html page of your current website.
+9) Under your newly created API, choose Authorizers.
+10) Ch0ose Create New Authorizer.
+11) Enter WildRydes for the Authorizer name.
+12) Select Cognito for the type.
+13) In the Region drop-down under Cognito User Pool, select the Region where you created your Cognito user pool in module 2 (by default the current region should be selected).
+14) Enter WildRydes (or the name you gave your user pool) in the Cognito User Pool input.
+15) Enter Authorization for the Token Source.
+16) Choose Create.
+17) Verify your authorizer configuration
+18) Open a new browser tab and visit /ride.html under your website's domain.
+19) If you are redirected to the sign-in page, sign in with the user you created in the last module. You will be redirected back to /ride.html.
+20) Copy the auth token from the notification on the /ride.html,
+21) Go back to previous tab where you have just finished creating the Authorizer
 Click Test at the bottom of the card for the authorizer.
 Paste the auth token into the Authorization Token field in the popup dialog.
 Click Test button and verify that the response code is 200 and that you see the claims for your user displayed.
@@ -222,14 +209,14 @@ Choose Request Unicorn. You should see a notification in the right sidebar that 
 
 ## AWS Global Infrastructure
 ### Major Cloud Providers
-Amazon Web Services (AWS)
-Google Cloud Platform (GCP)
-Microsoft Azure
+* Amazon Web Services (AWS)
+* Google Cloud Platform (GCP)
+* Microsoft Azure
 At a high level, these providers are similar. However, there are many factors that distinguish them from each other, including:
-Geographic Availability
-Market Share and Growth Rate
-Services
-Pricing Model
+* Geographic Availability
+* Market Share and Growth Rate
+* Services
+* Pricing Model
 
 #### Geographic Availability
 Cloud computing locations are worldwide. These locations called "regions" and "availability zones."
@@ -262,19 +249,14 @@ Azure offers about 30+ services, with a focus on integration with other Microsof
 #### Pricing
 The pricing models of the major cloud provides are similar:
 
-
-On-demand, pay-as-you-go
-Discounts for committed usage
-Usage-based serverless resources
-On-demand pricing for the same compute (CPU-RAM-Disk) resources varies between cloud providers and is calculated on an hourly rate.
+* On-demand, pay-as-you-go
+* Discounts for committed usage
+* Usage-based serverless resources
+* On-demand pricing for the same compute (CPU-RAM-Disk) resources varies between cloud providers and is calculated on an hourly rate.
 
 Discounts also vary between cloud providers. For example, AWS offers reserved instances that you can pre-purchase annually, whereas GCP offers "sustained use discount" whereby pricing goes down the more you use an instance.
 
 Serverless computing (Lambda on AWS, Functions on Azure, and Cloud Functions on GCP) are billed for the compute power you use, based on 100-millisecond increments.
-
-
-
-
 
 ## Regions and Availability Zones 
 https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html.
@@ -516,12 +498,12 @@ Bonus Tip
 String is not a very good candidate to be used with synchronized keyword. It’s because they are stored in a string pool and we don’t want to lock a string that might be getting used by another piece of code. So I am using an Object variable. Learn more about synchronization and thread safety in java.
 
 ## Thread API
-java.lang
-Class Thread
-java.lang.Object
-java.lang.Thread
-All Implemented Interfaces:Runnable
-Direct Known Subclasses:ForkJoinWorkerThread
+* java.lang
+* Class Thread
+* java.lang.Object
+* java.lang.Thread
+* All Implemented Interfaces:Runnable
+* Direct Known Subclasses:ForkJoinWorkerThread
 
 public class Thread
 extends Object
