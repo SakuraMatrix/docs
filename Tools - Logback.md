@@ -26,7 +26,7 @@ If none of the above are available, then Logback will configure itself automatic
 
 **NOTE**
 
-***This file must be in either `main/java/resources` or directly in the classpath (no subfolders) of your program for it to be read***
+***This file must be in either `src/main/resources` or directly in the classpath (no subfolders) of your program for it to be read***
 
 ## Step 3: Configure the configuration file
 After creating the configuration file, you now have the ability to configure Logback.
